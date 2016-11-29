@@ -13,3 +13,30 @@ interface IBody {
   name: string;
   arguments: IToken[];
 }
+
+interface IAttr {
+  width: number;
+  height: number;
+  viewBox: string;
+  xmlns: string;
+  version: string;
+}
+
+interface ISVGAST {
+  tag: string;
+  attr: IAttr;
+  body: IBodys[]
+}
+
+interface IBodys {
+  tag: string
+  attr: IBodyAttr;
+}
+
+interface IBodyAttr {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  fill: string;
+}
