@@ -9,7 +9,7 @@ export function lexer(code: String): IToken[] {
     });
 }
 
-export function parser(tokens: IToken[]) {
+export function parser(tokens: IToken[]): IAST {
   let AST: IAST = {
     body: [],
     type: "Drawing",
@@ -23,9 +23,9 @@ export function parser(tokens: IToken[]) {
       switch (currentToken.value) {
         case "Paper":
           const expression: IBody = {
-            arguments: [],
-            name: "Paper",
             type: "CallExpression",
+            name: "Paper",
+            arguments: [],
           };
           // 如果当前标记是以 Paper 为类型的 CallExpression，下一个标记应该是颜色参数
           const argument = tokens.shift();

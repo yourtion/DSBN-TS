@@ -25,11 +25,11 @@ interface IAttr {
 interface ISVGAST {
   tag: string;
   attr: IAttr;
-  body: IBodys[]
+  body: IBodys[];
 }
 
 interface IBodys {
-  tag: string
+  tag: string;
   attr: IBodyAttr;
 }
 
