@@ -40,4 +40,5 @@ interface IBodyAttr {
   width: number;
   height: number;
   fill: string;
+  [key: string]: string | number;
 }
