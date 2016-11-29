@@ -1,19 +1,3 @@
-interface IToken {
-  type: string;
-  value: string | number;
-}
-
-interface IAST {
-  type: string;
-  body: IBody[];
-}
-
-interface IBody {
-  type: string;
-  name: string;
-  arguments: IToken[];
-}
-
 export function lexer(code: String): IToken[] {
   return code.split(/\s+/)
     .filter((t) => { return t.length > 0; })
