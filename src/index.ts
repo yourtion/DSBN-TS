@@ -1,17 +1,8 @@
+import * as util from "util";
+
 interface IToken {
   type: string;
   value: string | number;
-}
-
-function lexer(code: String): IToken[] {
-  return code.split(/\s+/)
-    .filter((t) => { return t.length > 0; })
-    .map((t) => {
-      const n = Number(t);
-      return isNaN(n)
-        ? { type: "word", value: t }
-        : { type: "number", value: n };
-    });
 }
 
 interface IAST {
@@ -23,6 +14,23 @@ interface IBody {
   type: string;
   name: string;
   arguments: IToken[];
+}
+
+function dump(...args: any[]) {
+  for (const item of args) {
+    console.log(util.inspect(item, { depth: 10, colors: true }));
+  }
+}
+
+function lexer(code: String): IToken[] {
+  return code.split(/\s+/)
+    .filter((t) => { return t.length > 0; })
+    .map((t) => {
+      const n = Number(t);
+      return isNaN(n)
+        ? { type: "word", value: t }
+        : { type: "number", value: n };
+    });
 }
 
 function parser(tokens: IToken[]) {
@@ -68,4 +76,5 @@ function parser(tokens: IToken[]) {
 
 const lex = lexer("Paper 100");
 const parsed = parser(lex);
-console.log(parsed);
+
+dump(parsed, parsed);
