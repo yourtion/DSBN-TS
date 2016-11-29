@@ -1,17 +1,17 @@
 interface IToken {
-  type: string,
-  value: string | number
+  type: string;
+  value: string | number;
 }
 
-function lexer (code: string): IToken[] {
+function lexer(code: String): IToken[] {
   return code.split(/\s+/)
-          .filter(function (t) { return t.length > 0 })
-          .map(function (t) {
-            const n = Number(t)
-            return isNaN(n)
-                    ? {type: "word", value: t}
-                    : {type: "number", value: n}
-          })
+    .filter((t) => { return t.length > 0; })
+    .map((t) => {
+      const n = Number(t);
+      return isNaN(n)
+        ? { type: "word", value: t }
+        : { type: "number", value: n };
+    });
 }
 
 console.log(lexer("Paper 100"));
