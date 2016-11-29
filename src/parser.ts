@@ -1,4 +1,4 @@
-export function lexer(code: String): IToken[] {
+export function lexer(code: string): IToken[] {
   return code.split(/\s+/)
     .filter((t) => { return t.length > 0; })
     .map((t) => {
@@ -10,13 +10,14 @@ export function lexer(code: String): IToken[] {
 }
 
 export function parser(tokens: IToken[]): IAST {
+  const tokensClone = tokens.slice();
   let AST: IAST = {
     body: [],
     type: "Drawing",
   };
   // 一次提取一个标记，作为 current_token，一直循环，直到我们脱离标记。
-  while (tokens.length > 0) {
-    const currentToken = tokens.shift();
+  while (tokensClone.length > 0) {
+    const currentToken = tokensClone.shift();
 
     // 既然数字标记自身并不做任何事情，我们只要在发现一个单词时分析它的语法。
     if (currentToken.type === "word") {
@@ -28,7 +29,7 @@ export function parser(tokens: IToken[]): IAST {
             arguments: [],
           };
           // 如果当前标记是以 Paper 为类型的 CallExpression，下一个标记应该是颜色参数
-          const argument = tokens.shift();
+          const argument = tokensClone.shift();
           if (argument.type === "number") {
             expression.arguments.push({  // 在 expression 对象内部加入参数信息
               type: "NumberLiteral",

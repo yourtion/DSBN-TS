@@ -20,6 +20,7 @@ interface IAttr {
   viewBox: string;
   xmlns: string;
   version: string;
+  [key: string]: string | number;
 }
 
 interface ISVGAST {

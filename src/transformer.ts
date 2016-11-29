@@ -1,4 +1,5 @@
 export function transformer(ast: IAST): ISVGAST {
+  const astClone = Object.assign({}, ast);
   const svgAst: ISVGAST = {
     tag: "svg",
     attr: {
@@ -12,8 +13,8 @@ export function transformer(ast: IAST): ISVGAST {
   let penColor = 100; // 默认钢笔颜色为黑
 
   // 一次提取一个调用表达式，作为 `node`。循环直至我们跳出表达式体。
-  while (ast.body.length > 0) {
-    const node = ast.body.shift();
+  while (astClone.body.length > 0) {
+    const node = astClone.body.shift();
     switch (node.name) {
       case "Paper":
         const paperColor = 100 - Number(node.arguments[0].value);
