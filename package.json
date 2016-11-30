@@ -15,7 +15,7 @@
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "test": "tsc && mocha dist/test",
+    "test": "tsc && ./node_modules/.bin/mocha dist/test",
     "lint": "tslint ./src --fix"
   },
   "repository": {
