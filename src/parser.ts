@@ -1,14 +1,3 @@
-export function lexer(code: string): IToken[] {
-  return code.split(/\s+/)
-    .filter((t) => { return t.length > 0; })
-    .map((t) => {
-      const n = Number(t);
-      return isNaN(n)
-        ? { type: "word", value: t }
-        : { type: "number", value: n };
-    });
-}
-
 export function parser(tokens: IToken[]): IAST {
   const tokensClone = tokens.slice();
   let AST: IAST = {

@@ -1,6 +1,6 @@
 interface IToken {
   type: string;
-  value: string | number;
+  value?: string | number;
 }
 
 interface IAST {
