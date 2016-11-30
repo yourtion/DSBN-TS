@@ -1,0 +1,27 @@
+{
+  "name": "dsbn",
+  "version": "0.1.0",
+  "description": "Design SVG By Numbers ( Use DBN language for SVG implement by TypeScript )",
+  "main": "dist/index.js",
+  "repository": {
+    "type" : "git",
+     "url" : "https://github.com/yourtion/DSBN-TS"
+  },
+  "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.33",
+    "@types/node": "0.0.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "tsc && mocha dist/test",
+    "lint": "tslint ./src --fix"
+  },
+  "keywords": [
+    "DBN",
+    "SVG"
+  ],
+  "author": "Yourtion Guo <yourtion@gmail.com>",
+  "license": "MIT"
+}

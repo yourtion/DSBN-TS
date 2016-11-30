@@ -20,6 +20,16 @@
       "port": 9229,
       "outFiles": [],
       "sourceMaps": true
+    },
+    {
+      "name": "Test",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/.bin/mocha",
+      "cwd": "${workspaceRoot}/dist",
+      "args": ["test"],
+      "sourceMaps": true,
+			"stopOnEntry": false
     }
   ]
 }
