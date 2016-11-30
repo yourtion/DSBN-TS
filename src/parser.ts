@@ -9,7 +9,7 @@ export function parser(tokens: IToken[]): IAST {
     const currentToken = tokensClone.shift();
 
     // 既然数字标记自身并不做任何事情，我们只要在发现一个单词时分析它的语法。
-    if (currentToken.type === "word") {
+    if (currentToken && currentToken.type === "word") {
       switch (currentToken.value) {
         case "Paper":
           const expression: IBody = {
@@ -19,7 +19,7 @@ export function parser(tokens: IToken[]): IAST {
           };
           // 如果当前标记是以 Paper 为类型的 CallExpression，下一个标记应该是颜色参数
           const argument = tokensClone.shift();
-          if (argument.type === "number") {
+          if (argument && argument.type === "number") {
             expression.arguments.push({  // 在 expression 对象内部加入参数信息
               type: "NumberLiteral",
               value: argument.value,

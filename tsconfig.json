@@ -5,6 +5,7 @@
     "sourceMap": true,
     "outDir": "dist",
     "sourceRoot": "src",
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "strictNullChecks": true
   }
 }
