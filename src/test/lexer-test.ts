@@ -1,25 +1,24 @@
 import { expect } from "chai";
 import { lexer } from "../";
 
-let LEX: IToken[];
 
 describe("Lexer", () => {
 
   it("Paper", () => {
     const str = "Paper 100";
-    const ret = LEX = lexer(str);
+    const ret = lexer(str);
     expect(ret).to.deep.equal([{ type: "word", value: "Paper" }, { type: "number", value: 100 }]);
   });
 
   it("Pen", () => {
     const str = "Pen 100";
-    const ret = LEX = lexer(str);
+    const ret = lexer(str);
     expect(ret).to.deep.equal([{ type: "word", value: "Pen" }, { type: "number", value: 100 }]);
   });
 
   it("Line", () => {
     const str = "Line 100 100 200 200";
-    const ret = LEX = lexer(str);
+    const ret = lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Line" },
       { type: "number", value: 100 },
@@ -31,11 +30,11 @@ describe("Lexer", () => {
 
   it("Paper and Pen", () => {
     const str = "Paper 95\n Pen 1";
-    const ret = LEX = lexer(str);
+    const ret = lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Paper" },
       { type: "number", value: 95 },
-      { type: "newline" },
+      { type: "newline" , value: ""},
       { type: "word", value: "Pen" },
       { type: "number", value: 1 },
     ]);
@@ -44,13 +43,13 @@ describe("Lexer", () => {
 
   it("Paper and //", () => {
     const str = "// Pen 1 Haha\nPaper 95";
-    const ret = LEX = lexer(str);
+    const ret = lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "//" },
       { type: "word", value: "Pen" },
       { type: "number", value: 1 },
       { type: "word", value: "Haha" },
-      { type: "newline" },
+      { type: "newline" , value: ""},
       { type: "word", value: "Paper" },
       { type: "number", value: 95 },
 
@@ -59,32 +58,32 @@ describe("Lexer", () => {
 
   it("Paper and Set[]", () => {
     const str = "Paper 95\n Set [ 1 2 ]";
-    const ret = LEX = lexer(str);
+    const ret = lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Paper" },
       { type: "number", value: 95 },
-      { type: "newline" },
+      { type: "newline", value: "" },
       { type: "word", value: "Set" },
-      { type: "ob" },
+      { type: "ob", value: "[" },
       { type: "number", value: 1 },
       { type: "number", value: 2 },
-      { type: "cb" },
+      { type: "cb" , value: "]"},
     ]);
   });
 
   it("Paper and {}", () => {
     const str = "Paper 95\n { \n Pen 100 \n }";
-    const ret = LEX = lexer(str);
+    const ret = lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Paper" },
       { type: "number", value: 95 },
-      { type: "newline" },
-      { type: "ocb" },
-      { type: "newline" },
+      { type: "newline" , value: ""},
+      { type: "ocb", value: "{" },
+      { type: "newline", value: "" },
       { type: "word", value: "Pen" },
       { type: "number", value: 100 },
-      { type: "newline" },
-      { type: "ccb" },
+      { type: "newline", value: "" },
+      { type: "ccb", value: "}" },
     ]);
   });
 

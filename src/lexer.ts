@@ -12,15 +12,15 @@ export function lexer(code: string): IToken[] {
     const n = Number(t);
     if (t.length <= 0 || isNaN(n)) {
       if (t === "*nl*") {
-        tokens.push({ type: "newline" });
+        tokens.push({ type: "newline", value: "" });
       } else if (t === "*ob*") {
-        tokens.push({ type: "ob" });
+        tokens.push({ type: "ob", value: "[" });
       } else if (t === "*cb*") {
-        tokens.push({ type: "cb" });
+        tokens.push({ type: "cb", value: "]" });
       } else if (t === "*ocb*") {
-        tokens.push({ type: "ocb" });
+        tokens.push({ type: "ocb", value: "{" });
       } else if (t === "*ccb*") {
-        tokens.push({ type: "ccb" });
+        tokens.push({ type: "ccb", value: "}" });
       } else if (t.length > 0) {
         tokens.push({ type: "word", value: t });
       }

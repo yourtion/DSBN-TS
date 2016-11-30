@@ -27,7 +27,7 @@
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/.bin/mocha",
       "cwd": "${workspaceRoot}/dist",
-      "args": ["test"],
+      "args": ["-c","-d","-w","test"],
       "sourceMaps": true,
 			"stopOnEntry": false
     }
