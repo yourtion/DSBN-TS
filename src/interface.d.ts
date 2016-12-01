@@ -1,6 +1,6 @@
 interface IToken {
   type: string;
-  value?: string | number;
+  value: string | number;
 }
 
 interface IAST {
@@ -10,8 +10,8 @@ interface IAST {
 
 interface IBody {
   type: string;
-  name: string;
-  arguments: IToken[];
+  name?: string;
+  arguments?: IToken[];
 }
 
 interface IAttr {
