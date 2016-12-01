@@ -25,20 +25,36 @@ interface IAttr {
 
 interface ISVGAST {
   tag: string;
-  attr: IAttr;
+  attr: IAttr ;
   body: IBodys[];
 }
 
 interface IBodys {
   tag: string;
-  attr: IBodyAttr;
+  attr: IBodyRect | IBodyLine;
+  body: IBodys[]
 }
 
-interface IBodyAttr {
+interface IBodyRect {
   x: number;
   y: number;
   width: number;
   height: number;
   fill: string;
   [key: string]: string | number;
+}
+
+interface IBodyLine {
+  x1: number
+  y1: number,
+  x2: number,
+  y2: number,
+  stroke: string,
+  "stroke-linecap": string,
+  [key: string]: string | number;
+}
+
+interface IElements {
+  Line: Function;
+  Paper: Function;
 }

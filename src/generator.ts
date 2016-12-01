@@ -5,7 +5,7 @@
  * @param {IAttr} attr
  * @returns {string}
  */
-function createAttrString(attr: IAttr | IBodyAttr): string {
+function createAttrString(attr: IAttr | IBodyRect | IBodyLine): string {
   return Object.keys(attr).map((key: string) => {
     return `${key}="${attr[key]}"`;
   }).join(" ");
