@@ -1,25 +1,47 @@
-/**
- * 从 attr 对象中创建属性（attribute）字符串
- * 使得 { "width": 100, "height": 100 } 变成 'width="100" height="100"'
- * 
- * @param {IAttr} attr
- * @returns {string}
- */
-function createAttrString(attr: IAttr | IBodyRect | IBodyLine): string {
-  return Object.keys(attr).map((key: string) => {
-    return `${key}="${attr[key]}"`;
-  }).join(" ");
-}
+export function generator(svgAst: ISVG | ISVG[]): string {
 
-export function generator(svgAst: ISVGAST): string {
-  // 顶端节点总是 <svg>。为 svg 标签创建属性字符串
-  const svgAttr = createAttrString(svgAst.attr);
+  function traverseSvgAst(obj: ISVG | ISVG[], parent: string[] = [], rest: Array<ISVG|ISVG[]> = [], text = ""): string {
+    let objClone: ISVG[] = [];
+    if (Array.isArray(obj)) {
+      objClone = obj.slice();
+    } else {
+      objClone.push(obj);
+    }
 
-  // 为每个 svf_ast body 中的元素，生成 svg 标签
-  const elements = svgAst.body.map((node) => {
-    return `<${node.tag} ${createAttrString(node.attr)}></${node.tag}>`;
-  }).join("\n\t");
+    while (objClone.length > 0) {
+      let currentNode = objClone.shift();
+      if(!currentNode || !currentNode.body) {
+        break;
+      }
+      let body = currentNode.body ;
+      const currAttr = currentNode.attr;
+      let attr = Object.keys(currentNode.attr).map( (key) => {
+        return `${key}="${currAttr[key]}"`;
+      }).join(" ");
 
-  // 使用开和关的 svg 标签包装来完成 svg 代码
-  return `<svg ${ svgAttr }> ${ elements } </svg>`;
+      text += `${parent.map( () => { return "\t"; }).join("")} <${currentNode.tag} ${attr}>`;
+
+      if ( Array.isArray(currentNode.body) && currentNode.body.length > 0) {
+        text += "\n";
+        parent.push(currentNode.tag);
+        rest.push(objClone);
+        return traverseSvgAst(currentNode.body, parent, rest, text);
+      }
+
+      text += `${body} </${currentNode.tag}>\n`;
+    }
+
+    while (rest.length > 0) {
+      let next = rest.pop();
+      let tag = parent.pop();
+      text += `${parent.map( () => { return "\t"; }).join("")} </${tag}>\n`;
+      if (next && Array.isArray(next) && next.length > 0) {
+        traverseSvgAst(next, parent, rest, text);
+      }
+    }
+
+    return text;
+  }
+
+  return traverseSvgAst(svgAst).trim();
 }

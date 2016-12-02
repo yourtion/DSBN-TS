@@ -8,7 +8,7 @@ function findParamValue(p: IToken): number {
 }
 
 const elements = {
-  Line: (param: IToken[], penColor: number): IBodys => {
+  Line: (param: IToken[], penColor: number): ISVG => {
     return {
       tag: "line",
       attr: {
@@ -22,7 +22,7 @@ const elements = {
       body: [],
     };
   },
-  Paper: (param: IToken[]): IBodys => {
+  Paper: (param: IToken[]): ISVG => {
     return {
       tag: "rect",
       attr: {
@@ -37,9 +37,9 @@ const elements = {
   },
 };
 
-export function transformer(ast: IAST): ISVGAST {
+export function transformer(ast: IAST): ISVG {
   const astClone = Object.assign({}, ast);
-  const svgAst: ISVGAST = {
+  const svgAst: ISVG = {
     tag: "svg",
     attr: {
       height: 100, width: 100,

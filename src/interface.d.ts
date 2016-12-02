@@ -23,16 +23,10 @@ interface IAttr {
   [key: string]: string | number;
 }
 
-interface ISVGAST {
+interface ISVG {
   tag: string;
-  attr: IAttr ;
-  body: IBodys[];
-}
-
-interface IBodys {
-  tag: string;
-  attr: IBodyRect | IBodyLine;
-  body: IBodys[]
+  attr: IAttr | IBodyRect | IBodyLine;
+  body: ISVG[]
 }
 
 interface IBodyRect {
