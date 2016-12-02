@@ -1,6 +1,7 @@
 import { expect } from "chai";
-import { lexer } from "../";
+import { DSBN } from "../";
 
+const lexer = DSBN.lexer;
 
 describe("Lexer", () => {
 

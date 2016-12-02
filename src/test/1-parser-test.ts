@@ -1,5 +1,8 @@
 import { expect } from "chai";
-import { lexer, parser } from "../";
+import { DSBN } from "../";
+
+const lexer = DSBN.lexer;
+const parser = DSBN.parser;
 
 const RET_PAPER = {
   type: "CallExpression",
