@@ -6,7 +6,32 @@ Design SVG By Numbers ( DBN like language for building SVG ) implement by TypeSc
 
 ## Supported Keywords
 
-- [ ] `Paper`
-- [ ] `Pen`
-- [ ] `Line`
-- [ ] `// comment`
+### DBN
+
+- [x] `Paper`
+- [x] `Pen`
+- [x] `Line`
+- [x] `// comment`
+- [ ] `Set` (variable)
+- [ ] `{ }` (block)
+- [ ] Nested block
+- [ ] `Repeat`
+- [ ] `(+ - / *)` (calculations) 
+- [ ] `[x, y]` (dot)
+- [ ] `Same ? / NotSame?` (question)
+- [ ] `Smaller ? / NotSmaller?` (question)
+
+### SVG Extent
+
+- [ ] `Rect`
+- [ ] `Circle`
+- [ ] `Ellipse`
+- [ ] `Polyline`
+- [ ] `Polygon`
+- [ ] `Path`
+
+### TODO
+
+- [ ] More `Pen` color support
+- [ ] Export SVG
+
