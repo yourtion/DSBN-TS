@@ -14,11 +14,11 @@ const elements = {
     return {
       tag: "line",
       attr: {
-        x1: findParamValue(param[0]),
-        y1: 100 - findParamValue(param[1]),
-        x2: findParamValue(param[2]),
-        y2: 100 - findParamValue(param[3]),
-        stroke: makeColor(penColor),
+        "x1": findParamValue(param[0]),
+        "y1": 100 - findParamValue(param[1]),
+        "x2": findParamValue(param[2]),
+        "y2": 100 - findParamValue(param[3]),
+        "stroke": makeColor(penColor),
         "stroke-linecap": "round",
       },
       body: [],
