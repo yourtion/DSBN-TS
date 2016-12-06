@@ -6,6 +6,8 @@
     "outDir": "dist",
     "sourceRoot": "src",
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "declaration": true
   }
 }

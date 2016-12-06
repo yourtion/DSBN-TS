@@ -1,3 +1,5 @@
+import { IToken } from "./interface";
+
 export function lexer(code: string): IToken[] {
   const codeToken = code
     .replace(/[\n\r]/g, " *nl* ")

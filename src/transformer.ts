@@ -1,3 +1,5 @@
+import { IAST, ISVG, IToken } from "./interface";
+
 function makeColor(level: number = 100): string {
   level = 100 - level;
   return `rgb(${level}%, ${level}%, ${level}%)`;

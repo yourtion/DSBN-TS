@@ -1,3 +1,5 @@
+import { IAST, IToken } from "./interface";
+
 function expectedTypeCheck(type: string, expect: string[] | string): boolean {
   if (Array.isArray(expect)) {
     return expect.indexOf(type) >= 0;

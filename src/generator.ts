@@ -1,3 +1,5 @@
+import { ISVG } from "./interface";
+
 export function generator(svgAst: ISVG | ISVG[]): string {
 
   function traverseSvgAst(obj: ISVG | ISVG[], parent: string[] = [], rest: Array<ISVG|ISVG[]> = [], text = ""): string {
@@ -10,7 +12,7 @@ export function generator(svgAst: ISVG | ISVG[]): string {
 
     while (objClone.length > 0) {
       let currentNode = objClone.shift();
-      if(!currentNode || !currentNode.body) {
+      if (!currentNode || !currentNode.body) {
         break;
       }
       let body = currentNode.body ;
