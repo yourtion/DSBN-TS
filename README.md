@@ -12,7 +12,7 @@ Design SVG By Numbers ( DBN like language for building SVG ) implement by TypeSc
 - [x] `Pen`
 - [x] `Line`
 - [x] `// comment`
-- [ ] `Set` (variable)
+- [x] `Set` (variable)
 - [ ] `{ }` (block)
 - [ ] Nested block
 - [ ] `Repeat`

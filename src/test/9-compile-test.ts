@@ -29,4 +29,9 @@ describe("Compile", () => {
     expect(compile(str)).to.equal(RET_XML_LINE);
   });
 
+  it("Line and Set", () => {
+    const str = "Paper 100 \n Set B 50 \n Pen B \n Line 100 100 200 200";
+    expect(compile(str)).to.equal(RET_XML_LINE);
+  });
+
 });

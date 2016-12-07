@@ -13,6 +13,7 @@ export interface IBody {
   name?: string;
   arguments?: IToken[];
   identifier?: IToken;
+  value?: IToken | string;
 }
 
 export interface IAttr {

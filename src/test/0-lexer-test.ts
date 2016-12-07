@@ -57,14 +57,26 @@ describe("Lexer", () => {
     ]);
   });
 
-  it("Paper and Set[]", () => {
-    const str = "Paper 95\n Set [ A 2 ]";
+  it("Paper and Set", () => {
+    const str = "Paper 95\n Set A 2";
     const ret = lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Paper" },
       { type: "number", value: 95 },
       { type: "newline", value: "" },
       { type: "word", value: "Set" },
+      { type: "word", value: "A" },
+      { type: "number", value: 2 },
+    ]);
+  });
+
+  it("Paper and []", () => {
+    const str = "Paper 95 \n [ A 2 ]";
+    const ret = lexer(str);
+    expect(ret).to.deep.equal([
+      { type: "word", value: "Paper" },
+      { type: "number", value: 95 },
+      { type: "newline", value: "" },
       { type: "ob", value: "[" },
       { type: "word", value: "A" },
       { type: "number", value: 2 },

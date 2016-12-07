@@ -88,4 +88,16 @@ describe("Transformer", () => {
     });
   });
 
+  it("Paper and Set", () => {
+    const str = "Paper 100\n Set A 50 \n Pen A \n Line 100 100 200 200";
+    const lexed = lexer(str);
+    const parsed = parser(lexed);
+    const transformed = transformer(parsed);
+    expect(transformed).to.deep.equal({
+      tag: "svg",
+      attr: RET_SVG_ATTR,
+      body: [RET_SVG_PAPER, RET_SVG_LINE],
+    });
+  });
+
 });

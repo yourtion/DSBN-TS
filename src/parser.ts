@@ -1,4 +1,4 @@
-import { IAST, IToken } from "./interface";
+import { IAST, IBody, IToken } from "./interface";
 
 function expectedTypeCheck(type: string, expect: string[] | string): boolean {
   if (Array.isArray(expect)) {
@@ -67,7 +67,7 @@ export function parser(tokens: IToken[]): IAST {
           break;
         }
         case "//": {
-          const expression = {
+          const expression: IBody = {
             type: "CommentExpression",
             value: "",
           };
@@ -84,7 +84,7 @@ export function parser(tokens: IToken[]): IAST {
             throw new Error("You can not define Paper more than once");
           }
           const args = findArguments(tokensClone, "Paper", 1);
-          const expression = {
+          const expression: IBody = {
             type: "CallExpression",
             name: "Paper",
             arguments: args,
@@ -95,7 +95,7 @@ export function parser(tokens: IToken[]): IAST {
         }
         case "Pen": {
           const args = findArguments(tokensClone, "Pen", 1);
-          const expression = {
+          const expression: IBody = {
             type: "CallExpression",
             name: "Pen",
             arguments: args,
@@ -113,7 +113,7 @@ export function parser(tokens: IToken[]): IAST {
           }
 
           const args = findArguments(tokensClone, "Line", 4);
-          const expression = {
+          const expression: IBody = {
             type: "CallExpression",
             name: "Line",
             arguments: args,
@@ -123,7 +123,7 @@ export function parser(tokens: IToken[]): IAST {
         }
         case "Set": {
           const args = findArguments(tokensClone, "Set", 2, ["word", "number"]);
-          const expression = {
+          const expression: IBody = {
             type : "VariableDeclaration",
             name : "Set",
             identifier : args[0],
