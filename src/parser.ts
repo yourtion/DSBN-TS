@@ -20,7 +20,7 @@ function findArguments(tokens: IToken[], cmd: string, expLen: number, expType?: 
       const expected = expectedTypeCheck(token.type, expType[curPos]);
       if (!expected) {
         throw new Error(`${cmd} takes ${JSON.stringify(expType[curPos])} as argument ${(curPos + 1)}.
-               ${token} "Instead found a " ${token.type} ${token.value}`);
+               ${JSON.stringify(token)} "Instead found a ${token.type} ${token.value}`);
       }
       if (token.type === "number" && (token.value < 0 || token.value > 100)) {
         throw new Error(`Found value ${token.value} for ${cmd} . Value must be between 0 - 100.`);
@@ -117,6 +117,17 @@ export function parser(tokens: IToken[]): IAST {
             type: "CallExpression",
             name: "Line",
             arguments: args,
+          };
+          AST.body.push(expression);
+          break;
+        }
+        case "Set": {
+          const args = findArguments(tokensClone, "Set", 2, ["word", "number"]);
+          const expression = {
+            type : "VariableDeclaration",
+            name : "Set",
+            identifier : args[0],
+            value : args[1],
           };
           AST.body.push(expression);
           break;

@@ -58,7 +58,7 @@ describe("Lexer", () => {
   });
 
   it("Paper and Set[]", () => {
-    const str = "Paper 95\n Set [ 1 2 ]";
+    const str = "Paper 95\n Set [ A 2 ]";
     const ret = lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Paper" },
@@ -66,7 +66,7 @@ describe("Lexer", () => {
       { type: "newline", value: "" },
       { type: "word", value: "Set" },
       { type: "ob", value: "[" },
-      { type: "number", value: 1 },
+      { type: "word", value: "A" },
       { type: "number", value: 2 },
       { type: "cb" , value: "]"},
     ]);

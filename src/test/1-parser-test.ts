@@ -27,6 +27,12 @@ const RET_LINE = {
   ],
 };
 
+const RET_SET = {
+  type: "VariableDeclaration",
+  name: "Set",
+  identifier: {type: "word", value: "A"}, value: {type: "number", value: 2},
+};
+
 describe("Parser", () => {
 
   it("Paper", () => {
@@ -89,6 +95,16 @@ describe("Parser", () => {
     expect(parsed).to.deep.equal({
       type: "Drawing",
       body: [{type: "CommentExpression", value: "Pen 1 Haha "}, RET_PAPER],
+    });
+  });
+
+  it("Paper and Set", () => {
+    const str = "Paper 100\n Set A 2 ";
+    const lexed = lexer(str);
+    const parsed = parser(lexed);
+    expect(parsed).to.deep.equal({
+      type: "Drawing",
+      body: [RET_PAPER, RET_SET],
     });
   });
 
