@@ -1,9 +1,9 @@
 import { expect } from "chai";
 import { DSBN } from "../";
 
-const lexer = DSBN.lexer;
-const parser = DSBN.parser;
-const transformer = DSBN.transformer;
+const lexer = new DSBN.Lexer().lexer;
+const parser = new DSBN.Parser().parser;
+const transformer = new DSBN.Transformer().transformer;
 
 const RET_SVG_ATTR = {
   width: 100,

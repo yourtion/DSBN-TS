@@ -7,12 +7,18 @@ import { Transformer } from "./transformer";
 export class DSBN {
 
   public static VERSION = "0.1.0";
-  public static lexer = new Lexer().lexer;
-  public static parser = new Parser().parser;
-  public static transformer = new Transformer().transformer;
-  public static generator = new Generator().generator;
+  public static Lexer = Lexer;
+  public static Parser = Parser;
+  public static Transformer = Transformer;
+  public static Generator = Generator;
+
+  private lexer = new Lexer().lexer;
+  private parser = new Parser().parser;
+  private transformer = new Transformer().transformer;
+  private generator = new Generator().generator;
+
 
   public compile = (code: string): string => {
-    return DSBN.generator(DSBN.transformer(DSBN.parser(DSBN.lexer(code))));
+    return this.generator(this.transformer(this.parser(this.lexer(code))));
   }
 }

@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { DSBN } from "../";
 
-const lexer = DSBN.lexer;
+const lexer = new DSBN.Lexer().lexer;
 
 describe("Lexer", () => {
 
