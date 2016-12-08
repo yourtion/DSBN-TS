@@ -3,7 +3,6 @@ import { DSBN } from "../";
 
 const lexer = new DSBN.Lexer().lexer;
 const parser = new DSBN.Parser().parser;
-a !==  2;
 
 const RET_PAPER = {
   type: "CallExpression",
