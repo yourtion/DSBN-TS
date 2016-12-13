@@ -4,7 +4,7 @@ export class Parser {
 
   private tokens: IToken[];
 
-  public parser = (tokens: IToken[]): IAST =>  {
+  public parser(tokens: IToken[]): IAST {
     this.tokens = tokens.slice();
     let AST: IAST = {
       body: [],

@@ -1,10 +1,10 @@
 import { expect } from "chai";
 import { DSBN } from "../";
 
-const lexer = new DSBN.Lexer().lexer;
-const parser = new DSBN.Parser().parser;
-const transformer = new DSBN.Transformer().transformer;
-const generator = new DSBN.Generator().generator;
+const L = new DSBN.Lexer();
+const P = new DSBN.Parser();
+const T = new DSBN.Transformer();
+const G = new DSBN.Generator();
 
 // tslint:disable-next-line
 const RET_XML_SVG_0 = `<svg height="100" width="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">\n\t`;
@@ -19,37 +19,37 @@ describe("Generator", () => {
 
   it("Paper", () => {
     const str = "Paper 100";
-    const lexed = lexer(str);
-    const parsed = parser(lexed);
-    const transformed = transformer(parsed);
-    const generated = generator(transformed);
+    const lexed = L.lexer(str);
+    const parsed = P.parser(lexed);
+    const transformed = T.transformer(parsed);
+    const generated = G.generator(transformed);
     expect(generated).to.equal(RET_XML_PAPER);
   });
 
   it("Line", () => {
     const str = "Paper 100 \n Pen 50 \n Line 100 100 200 200";
-    const lexed = lexer(str);
-    const parsed = parser(lexed);
-    const transformed = transformer(parsed);
-    const generated = generator(transformed);
+    const lexed = L.lexer(str);
+    const parsed = P.parser(lexed);
+    const transformed = T.transformer(parsed);
+    const generated = G.generator(transformed);
     expect(generated).to.equal(RET_XML_LINE);
   });
 
   it("Line and //", () => {
     const str = "// Pen 1 Haha \n Paper 100 \n Pen 50 \n Line 100 100 200 200";
-    const lexed = lexer(str);
-    const parsed = parser(lexed);
-    const transformed = transformer(parsed);
-    const generated = generator(transformed);
+    const lexed = L.lexer(str);
+    const parsed = P.parser(lexed);
+    const transformed = T.transformer(parsed);
+    const generated = G.generator(transformed);
     expect(generated).to.equal(RET_XML_LINE);
   });
 
   it("Line and Set", () => {
     const str = "Paper 100 \n Set B 50 \n Pen B \n Line 100 100 200 200";
-    const lexed = lexer(str);
-    const parsed = parser(lexed);
-    const transformed = transformer(parsed);
-    const generated = generator(transformed);
+    const lexed = L.lexer(str);
+    const parsed = P.parser(lexed);
+    const transformed = T.transformer(parsed);
+    const generated = G.generator(transformed);
     expect(generated).to.equal(RET_XML_LINE);
   });
 

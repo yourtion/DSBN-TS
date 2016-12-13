@@ -12,13 +12,12 @@ export class DSBN {
   public static Transformer = Transformer;
   public static Generator = Generator;
 
-  private lexer = new Lexer().lexer;
-  private parser = new Parser().parser;
-  private transformer = new Transformer().transformer;
-  private generator = new Generator().generator;
-
+  private L = new Lexer();
+  private P = new Parser();
+  private T = new Transformer();
+  private G = new Generator();
 
   public compile = (code: string): string => {
-    return this.generator(this.transformer(this.parser(this.lexer(code))));
+    return this.G.generator(this.T.transformer(this.P.parser(this.L.lexer(code))));
   }
 }

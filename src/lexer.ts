@@ -2,7 +2,7 @@ import { IToken } from "./interface";
 
 export class Lexer {
 
-  public lexer = (code: string): IToken[] => {
+  public lexer(code: string): IToken[] {
 
     const codeToken = code
       .replace(/[\n\r]/g, " *nl* ")

@@ -1,9 +1,9 @@
 import { expect } from "chai";
 import { DSBN } from "../";
 
-const lexer = new DSBN.Lexer().lexer;
-const parser = new DSBN.Parser().parser;
-const transformer = new DSBN.Transformer().transformer;
+const L = new DSBN.Lexer();
+const P = new DSBN.Parser();
+const T = new DSBN.Transformer();
 
 const RET_SVG_ATTR = {
   width: 100,
@@ -42,9 +42,9 @@ describe("Transformer", () => {
 
   it("Paper", () => {
     const str = "Paper 100";
-    const lexed = lexer(str);
-    const parsed = parser(lexed);
-    const transformed = transformer(parsed);
+    const lexed = L.lexer(str);
+    const parsed = P.parser(lexed);
+    const transformed = T.transformer(parsed);
     expect(transformed).to.deep.equal({
       tag: "svg",
       attr: RET_SVG_ATTR,
@@ -54,9 +54,9 @@ describe("Transformer", () => {
 
   it("Pen", () => {
     const str = "Pen 50";
-    const lexed = lexer(str);
-    const parsed = parser(lexed);
-    const transformed = transformer(parsed);
+    const lexed = L.lexer(str);
+    const parsed = P.parser(lexed);
+    const transformed = T.transformer(parsed);
     expect(transformed).to.deep.equal({
       tag: "svg",
       attr: RET_SVG_ATTR,
@@ -66,9 +66,9 @@ describe("Transformer", () => {
 
   it("Line", () => {
     const str = "Paper 100 \n Pen 50 \n Line 100 100 200 200";
-    const lexed = lexer(str);
-    const parsed = parser(lexed);
-    const transformed = transformer(parsed);
+    const lexed = L.lexer(str);
+    const parsed = P.parser(lexed);
+    const transformed = T.transformer(parsed);
     expect(transformed).to.deep.equal({
       tag: "svg",
       attr: RET_SVG_ATTR,
@@ -78,9 +78,9 @@ describe("Transformer", () => {
 
   it("Paper and //", () => {
     const str = "// Pen 1 Haha \n Paper 100";
-    const lexed = lexer(str);
-    const parsed = parser(lexed);
-    const transformed = transformer(parsed);
+    const lexed = L.lexer(str);
+    const parsed = P.parser(lexed);
+    const transformed = T.transformer(parsed);
     expect(transformed).to.deep.equal({
       tag: "svg",
       attr: RET_SVG_ATTR,
@@ -90,9 +90,9 @@ describe("Transformer", () => {
 
   it("Paper and Set", () => {
     const str = "Paper 100\n Set A 50 \n Pen A \n Line 100 100 200 200";
-    const lexed = lexer(str);
-    const parsed = parser(lexed);
-    const transformed = transformer(parsed);
+    const lexed = L.lexer(str);
+    const parsed = P.parser(lexed);
+    const transformed = T.transformer(parsed);
     expect(transformed).to.deep.equal({
       tag: "svg",
       attr: RET_SVG_ATTR,

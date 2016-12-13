@@ -1,25 +1,25 @@
 import { expect } from "chai";
 import { DSBN } from "../";
 
-const lexer = new DSBN.Lexer().lexer;
+const L = new DSBN.Lexer();
 
 describe("Lexer", () => {
 
   it("Paper", () => {
     const str = "Paper 100";
-    const ret = lexer(str);
+    const ret = L.lexer(str);
     expect(ret).to.deep.equal([{ type: "word", value: "Paper" }, { type: "number", value: 100 }]);
   });
 
   it("Pen", () => {
     const str = "Pen 100";
-    const ret = lexer(str);
+    const ret = L.lexer(str);
     expect(ret).to.deep.equal([{ type: "word", value: "Pen" }, { type: "number", value: 100 }]);
   });
 
   it("Line", () => {
     const str = "Line 100 100 200 200";
-    const ret = lexer(str);
+    const ret = L.lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Line" },
       { type: "number", value: 100 },
@@ -31,7 +31,7 @@ describe("Lexer", () => {
 
   it("Paper and Pen", () => {
     const str = "Paper 95\n Pen 1";
-    const ret = lexer(str);
+    const ret = L.lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Paper" },
       { type: "number", value: 95 },
@@ -44,7 +44,7 @@ describe("Lexer", () => {
 
   it("Paper and //", () => {
     const str = "// Pen 1 Haha\nPaper 95";
-    const ret = lexer(str);
+    const ret = L.lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "//" },
       { type: "word", value: "Pen" },
@@ -59,7 +59,7 @@ describe("Lexer", () => {
 
   it("Paper and Set", () => {
     const str = "Paper 95\n Set A 2";
-    const ret = lexer(str);
+    const ret = L.lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Paper" },
       { type: "number", value: 95 },
@@ -72,7 +72,7 @@ describe("Lexer", () => {
 
   it("Paper and []", () => {
     const str = "Paper 95 \n [ A 2 ]";
-    const ret = lexer(str);
+    const ret = L.lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Paper" },
       { type: "number", value: 95 },
@@ -86,7 +86,7 @@ describe("Lexer", () => {
 
   it("Paper and {}", () => {
     const str = "Paper 95\n { \n Pen 100 \n }";
-    const ret = lexer(str);
+    const ret = L.lexer(str);
     expect(ret).to.deep.equal([
       { type: "word", value: "Paper" },
       { type: "number", value: 95 },

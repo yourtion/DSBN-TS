@@ -39,7 +39,7 @@ export class Transformer {
     },
   };
 
-  public transformer = (ast: IAST): ISVG => {
+  public transformer(ast: IAST): ISVG {
     this.variables = {};
     this.ast = Object.assign({}, ast);
     this.svgAst = {
@@ -74,14 +74,14 @@ export class Transformer {
     return this.svgAst;
   }
 
-  private findParamValue = (p: IToken): number => {
+  private findParamValue(p: IToken): number {
     if (p.type === "word") {
       return Number(this.variables[p.value]);
     }
     return Number(p.value);
   }
 
-  private makeColor = (level: number = 100): string => {
+  private makeColor(level: number = 100): string {
     level = 100 - level;
     return `rgb(${level}%, ${level}%, ${level}%)`;
   }

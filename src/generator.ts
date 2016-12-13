@@ -6,14 +6,14 @@ export class Generator {
   private rest: Array<ISVG | ISVG[]>;
   private parent: string[];
 
-  public generator = (svgAst: ISVG | ISVG[]): string => {
+  public generator(svgAst: ISVG | ISVG[]): string {
     this.text = "";
     this.rest = [];
     this.parent = [];
     return this.traverseSvgAst(svgAst).trim();
   }
 
-  private traverseSvgAst = (obj: ISVG | ISVG[]): string => {
+  private traverseSvgAst(obj: ISVG | ISVG[]): string {
       let objClone: ISVG[] = [];
       if (Array.isArray(obj)) {
         objClone = obj.slice();
