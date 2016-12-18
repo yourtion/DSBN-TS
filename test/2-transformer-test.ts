@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import { DSBN } from "../";
+import { DSBN } from "../dist";
+import { ISVG } from "../src/interface";
 
 const L = new DSBN.Lexer();
 const P = new DSBN.Parser();
@@ -13,7 +14,7 @@ const RET_SVG_ATTR = {
   version: "1.1",
 };
 
-const RET_SVG_PAPER = {
+const RET_SVG_PAPER: ISVG = {
   tag: "rect",
   attr: {
     x: 0,
@@ -25,7 +26,7 @@ const RET_SVG_PAPER = {
   body: [],
 };
 
-const RET_SVG_LINE = {
+const RET_SVG_LINE: ISVG = {
   tag: "line",
   attr: {
     "x1": 100,

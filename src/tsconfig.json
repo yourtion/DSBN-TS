@@ -1,10 +1,11 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
-    "target": "ES6",
+    "target": "es6",
     "module": "commonjs",
+    "rootDir": ".",
     "sourceMap": true,
-    "outDir": "dist",
-    "sourceRoot": "src",
+    "outDir": "../dist",
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noImplicitReturns": true,

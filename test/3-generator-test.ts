@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DSBN } from "../";
+import { DSBN } from "../dist";
 
 const L = new DSBN.Lexer();
 const P = new DSBN.Parser();
