@@ -4,13 +4,15 @@ import { Lexer } from "./lexer";
 import { Parser } from "./parser";
 import { Transformer } from "./transformer";
 
+export * from "./generator";
+export * from "./interface";
+export * from "./lexer";
+export * from "./parser";
+export * from "./transformer";
+
 export class DSBN {
 
   public static VERSION = "0.1.0";
-  public static Lexer = Lexer;
-  public static Parser = Parser;
-  public static Transformer = Transformer;
-  public static Generator = Generator;
 
   private L = new Lexer();
   private P = new Parser();

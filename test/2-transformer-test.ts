@@ -1,10 +1,9 @@
 import { expect } from "chai";
-import { DSBN } from "../dist";
-import { ISVG } from "../src/interface";
+import { ISVG, Lexer, Parser, Transformer } from "../dist";
 
-const L = new DSBN.Lexer();
-const P = new DSBN.Parser();
-const T = new DSBN.Transformer();
+const L = new Lexer();
+const P = new Parser();
+const T = new Transformer();
 
 const RET_SVG_ATTR = {
   width: 100,

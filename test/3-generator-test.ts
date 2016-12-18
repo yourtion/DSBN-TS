@@ -1,10 +1,10 @@
 import { expect } from "chai";
-import { DSBN } from "../dist";
+import { Generator, Lexer, Parser, Transformer} from "../dist";
 
-const L = new DSBN.Lexer();
-const P = new DSBN.Parser();
-const T = new DSBN.Transformer();
-const G = new DSBN.Generator();
+const L = new Lexer();
+const P = new Parser();
+const T = new Transformer();
+const G = new Generator();
 
 // tslint:disable-next-line
 const RET_XML_SVG_0 = `<svg height="100" width="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">\n\t`;

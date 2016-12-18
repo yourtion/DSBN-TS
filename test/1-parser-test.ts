@@ -1,8 +1,8 @@
 import { expect } from "chai";
-import { DSBN } from "../dist";
+import { Lexer, Parser } from "../dist";
 
-const L = new DSBN.Lexer();
-const P = new DSBN.Parser();
+const L = new Lexer();
+const P = new Parser();
 
 const RET_PAPER = {
   type: "CallExpression",

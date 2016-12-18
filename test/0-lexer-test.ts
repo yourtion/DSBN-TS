@@ -1,7 +1,7 @@
 import { expect } from "chai";
-import { DSBN } from "../dist";
+import { Lexer } from "../dist";
 
-const L = new DSBN.Lexer();
+const L = new Lexer();
 
 describe("Lexer", () => {
 
