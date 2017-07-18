@@ -21,17 +21,17 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/chai": "^3.4.34",
-    "@types/mocha": "^2.2.33",
-    "@types/node": "0.0.2",
-    "chai": "^3.5.0",
+    "@types/chai": "^4.0.1",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "8.0.14",
+    "chai": "^4.1.0",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "remap-istanbul": "^0.8.0",
-    "source-map-support": "^0.4.6",
-    "ts-node": "^1.7.2",
-    "tslint": "^4.1.1",
-    "typescript": "^2.1.4"
+    "mocha": "^3.4.2",
+    "remap-istanbul": "^0.9.5",
+    "source-map-support": "^0.4.15",
+    "ts-node": "^3.2.0",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.1"
   },
   "repository": {
     "type": "git",
