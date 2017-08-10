@@ -41,7 +41,6 @@ describe("Lexer", () => {
     ]);
   });
 
-
   it("Paper and //", () => {
     const str = "// Pen 1 Haha\nPaper 95";
     const ret = L.lexer(str);

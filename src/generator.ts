@@ -22,17 +22,17 @@ export class Generator {
       }
 
       while (objClone.length > 0) {
-        let currentNode = objClone.shift();
+        const currentNode = objClone.shift();
         if (!currentNode || !currentNode.body) {
           break;
         }
-        let body = currentNode.body;
+        const body = currentNode.body;
         const currAttr = currentNode.attr;
-        let attr = Object.keys(currentNode.attr).map((key) => {
+        const attr = Object.keys(currentNode.attr).map((key) => {
           return `${key}="${currAttr[key]}"`;
         }).join(" ");
 
-        this.text += `${this.parent.map(() => { return "\t"; }).join("")} <${currentNode.tag} ${attr}>`;
+        this.text += `${this.parent.map(() => "\t").join("")} <${currentNode.tag} ${attr}>`;
 
         if (Array.isArray(currentNode.body) && currentNode.body.length > 0) {
           this.text += "\n";
@@ -45,9 +45,9 @@ export class Generator {
       }
 
       while (this.rest.length > 0) {
-        let next = this.rest.pop();
-        let tag = this.parent.pop();
-        this.text += `${this.parent.map(() => { return "\t"; }).join("")} </${tag}>\n`;
+        const next = this.rest.pop();
+        const tag = this.parent.pop();
+        this.text += `${this.parent.map(() => "\t").join("")} </${tag}>\n`;
         if (next && Array.isArray(next) && next.length > 0) {
           this.traverseSvgAst(next);
         }

@@ -51,6 +51,6 @@ export interface IBodyLine {
 }
 
 export interface IElements {
-  Line: Function;
-  Paper: Function;
+  Line: () => {};
+  Paper: () => {};
 }

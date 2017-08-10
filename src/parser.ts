@@ -6,7 +6,7 @@ export class Parser {
 
   public parser(tokens: IToken[]): IAST {
     this.tokens = tokens.slice();
-    let AST: IAST = {
+    const AST: IAST = {
       body: [],
       type: "Drawing",
     };

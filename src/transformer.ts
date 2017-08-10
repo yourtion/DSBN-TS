@@ -86,4 +86,3 @@ export class Transformer {
     return `rgb(${level}%, ${level}%, ${level}%)`;
   }
 }
-
