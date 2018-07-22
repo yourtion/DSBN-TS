@@ -29,7 +29,7 @@
     "mocha": "^4.0.0",
     "remap-istanbul": "^0.10.0",
     "source-map-support": "^0.5.0",
-    "ts-node": "^5.0.0",
+    "ts-node": "^6.0.0",
     "tslint": "^5.5.0",
     "typescript": "^2.4.1"
   },
