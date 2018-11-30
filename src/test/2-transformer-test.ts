@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { ISVG, Lexer, Parser, Transformer } from "../dist";
+import { ISVG, Lexer, Parser, Transformer } from "../lib";
 
 const L = new Lexer();
 const P = new Parser();

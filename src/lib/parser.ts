@@ -2,7 +2,7 @@ import { IAST, IBody, IToken } from "./interface";
 
 export class Parser {
 
-  private tokens: IToken[];
+  private tokens: IToken[] = [];
 
   public parser(tokens: IToken[]): IAST {
     this.tokens = tokens.slice();

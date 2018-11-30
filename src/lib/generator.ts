@@ -2,9 +2,9 @@ import { ISVG } from "./interface";
 
 export class Generator {
 
-  private text: string;
-  private rest: Array<ISVG | ISVG[]>;
-  private parent: string[];
+  private text: string = "";
+  private rest: Array<ISVG | ISVG[]> = [];
+  private parent: string[] = [];
 
   public generator(svgAst: ISVG | ISVG[]): string {
     this.text = "";

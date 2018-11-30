@@ -1,5 +1,4 @@
 import { Generator } from "./generator";
-import { IAST, IBody, ISVG, IToken } from "./interface";
 import { Lexer } from "./lexer";
 import { Parser } from "./parser";
 import { Transformer } from "./transformer";

@@ -4,10 +4,10 @@ export class Transformer {
 
   private variables: {
     [key: string]: number | string;
-  };
+  } = {};
   private penColor = 100; // 默认钢笔颜色为黑
-  private ast: IAST;
-  private svgAst: ISVG;
+  private ast: IAST = {} as IAST;
+  private svgAst: ISVG = {} as ISVG;
 
   private elements = {
     Line: (param: IToken[], penColor: number): ISVG => {

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Lexer } from "../dist";
+import { Lexer } from "../lib";
 
 const L = new Lexer();
 

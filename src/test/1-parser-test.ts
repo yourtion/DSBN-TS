@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Lexer, Parser } from "../dist";
+import { Lexer, Parser } from "../lib";
 
 const L = new Lexer();
 const P = new Parser();
@@ -60,7 +60,7 @@ describe("Parser", () => {
     const str = "Line 100 100 200 200";
     const lexed = L.lexer(str);
     try {
-      const parsed = P.parser(lexed);
+      P.parser(lexed);
     } catch (err) {
       expect(err).to.be.an("error");
       expect(err.message).to.be.equal("Please make Paper 1st");
@@ -71,7 +71,7 @@ describe("Parser", () => {
     const str = "Paper 95\n Line 100 100 200 200";
     const lexed = L.lexer(str);
     try {
-      const parsed = P.parser(lexed);
+      P.parser(lexed);
     } catch (err) {
       expect(err).to.be.an("error");
       expect(err.message).to.be.equal("Please define Pen 1st");
