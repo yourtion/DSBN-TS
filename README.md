@@ -6,28 +6,89 @@ Design SVG By Numbers: a small, dependency-free TypeScript compiler for a
 DBN-inspired drawing language. Compile drawings to standalone SVG using the
 library or command line. Node.js 22.13 or later is required for development and CLI use.
 
+- **Small programs, real vector graphics:** variables, arithmetic, nested loops, and conditions.
+- **Ready to use:** a TypeScript/JavaScript API and a CLI that exports standalone SVG files.
+- **No runtime dependencies:** drawings compile without a browser, DOM, or canvas.
+
+[Examples](#examples) · [Quick start](#quick-start) · [Library](#library) ·
+[Command line](#command-line) · [Language](#language) · [Development](#development)
+
+## Examples
+
+Each preview below is the actual SVG compiled from the linked DBN source.
+Click an image to open the vector output at full size.
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <a href="example/fan.svg"><img src="example/fan.svg" width="240" height="240" alt="A fan of black straight lines on a white canvas"></a><br>
+      <strong>Line fan</strong><br>
+      A descending loop and arithmetic.<br>
+      <a href="example/fan.dbn">DBN source</a> · <a href="example/fan.svg">SVG output</a>
+    </td>
+    <td align="center" width="50%">
+      <a href="example/grid.svg"><img src="example/grid.svg" width="240" height="240" alt="A five by five gray grid with white circles above the diagonal"></a><br>
+      <strong>Nested grid</strong><br>
+      Nested loops, variables, and questions.<br>
+      <a href="example/grid.dbn">DBN source</a> · <a href="example/grid.svg">SVG output</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <a href="example/shapes.svg"><img src="example/shapes.svg" width="240" height="240" alt="Colorful rectangles, circles, ellipses, polygons, polylines, and paths"></a><br>
+      <strong>Vector palette</strong><br>
+      Six SVG shapes and CSS colors.<br>
+      <a href="example/shapes.dbn">DBN source</a> · <a href="example/shapes.svg">SVG output</a>
+    </td>
+    <td align="center" width="50%">
+      <a href="example/dots.svg"><img src="example/dots.svg" width="240" height="240" alt="A black diagonal line crosses a gray diagonal made of individual dots"></a><br>
+      <strong>Sample and reflect</strong><br>
+      Read grayscale values and write dots.<br>
+      <a href="example/dots.dbn">DBN source</a> · <a href="example/dots.svg">SVG output</a>
+    </td>
+  </tr>
+</table>
+
+For example, this entire program produces the **line fan** above:
+
+```text
+Paper 0
+Pen 100
+Repeat n 9 1 {
+  Line 10 (n * 10) (100 - n * 10) 10
+}
+```
+
+`Paper 0` makes a white canvas, `Pen 100` selects black, and `Repeat` draws
+nine lines. Coordinates start at the **bottom left** of the 100 × 100 canvas.
+
 ## Quick start
+
+**Requirements:** Node.js 22.13+ and npm. Start from the repository to use all
+features documented here:
 
 ```sh
 git clone https://github.com/yourtion/DSBN-TS.git
 cd DSBN-TS
 npm ci
 npm run demo
-node dist/cli.js example/grid.dbn -o grid.svg
+node dist/cli.js example/fan.dbn -o drawing.svg
 ```
 
-Open `grid.svg` in a browser, or open [example/index.html](example/index.html) for
-the complete gallery. `npm run demo` rebuilds all checked-in SVGs from their `.dbn` sources.
+Open `drawing.svg` in a browser to see your first exported drawing. For the
+complete offline gallery, open `example/index.html` from your local checkout;
+the [gallery source](example/index.html) is also in the repository.
 
-| Demo | Source | Output |
-| --- | --- | --- |
-| Line fan | [fan.dbn](example/fan.dbn) | [fan.svg](example/fan.svg) |
-| Nested grid | [grid.dbn](example/grid.dbn) | [grid.svg](example/grid.svg) |
-| SVG shapes and colors | [shapes.dbn](example/shapes.dbn) | [shapes.svg](example/shapes.svg) |
-| Point reads and writes | [dots.dbn](example/dots.dbn) | [dots.svg](example/dots.svg) |
+**Try your own drawing:** save the line-fan program above as `drawing.dbn`, edit
+the pen color or loop bounds, then run:
 
-![Nested grid demo](example/grid.svg)
-![SVG shapes demo](example/shapes.svg)
+```sh
+node dist/cli.js drawing.dbn -o drawing.svg
+```
+
+Reopen `drawing.svg` to see the result. `npm run demo` rebuilds all four
+checked-in example SVGs from their `.dbn` sources, so the previews and examples
+stay in sync. For JavaScript/TypeScript integration, continue with [Library](#library).
 
 ## Library
 
