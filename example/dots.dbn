@@ -1,0 +1,10 @@
+// Point reads sample DBN Paper, Line, and previous Set [x y] commands.
+Paper 0
+Pen 100
+Line 10 10 90 90
+Repeat x 10 90 {
+  Set shade [x x]
+  NotSame? shade 0 {
+    Set [x (100 - x)] 60
+  }
+}

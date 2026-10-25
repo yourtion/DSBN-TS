@@ -56,26 +56,16 @@ describe("Parser", () => {
     });
   });
 
-  it("Line wirhout Paper", () => {
+  it("Line without Paper", () => {
     const str = "Line 100 100 200 200";
     const lexed = L.lexer(str);
-    try {
-      P.parser(lexed);
-    } catch (err) {
-      expect(err).to.be.an("error");
-      expect(err.message).to.be.equal("Please make Paper 1st");
-    }
+    expect(() => P.parser(lexed)).to.throw("Please make Paper 1st");
   });
 
-  it("Line wirhout Pen", () => {
+  it("Line without Pen", () => {
     const str = "Paper 95\n Line 100 100 200 200";
     const lexed = L.lexer(str);
-    try {
-      P.parser(lexed);
-    } catch (err) {
-      expect(err).to.be.an("error");
-      expect(err.message).to.be.equal("Please define Pen 1st");
-    }
+    expect(() => P.parser(lexed)).to.throw("Please define Pen 1st");
   });
 
   it("Line", () => {

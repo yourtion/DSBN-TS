@@ -1,6 +1,10 @@
+/** Tokens also represent evaluated expressions in the drawing AST. */
 export interface IToken {
   type: string;
   value: string | number;
+  left?: IToken;
+  right?: IToken;
+  arguments?: IToken[];
 }
 
 export interface IAST {
@@ -14,43 +18,50 @@ export interface IBody {
   arguments?: IToken[];
   identifier?: IToken;
   value?: IToken | string;
+  body?: IBody[];
 }
 
-export interface IAttr {
+export interface IAttributes {
+  [key: string]: string | number;
+}
+
+export interface IAttr extends IAttributes {
   width: number;
   height: number;
   viewBox: string;
   xmlns: string;
   version: string;
-  [key: string]: string | number;
 }
 
 export interface ISVG {
   tag: string;
-  attr: IAttr | IBodyRect | IBodyLine;
+  attr: IAttributes;
   body: ISVG[];
 }
 
-export interface IBodyRect {
+export interface IBodyRect extends IAttributes {
   x: number;
   y: number;
   width: number;
   height: number;
   fill: string;
-  [key: string]: string | number;
 }
 
-export interface IBodyLine {
+export interface IBodyLine extends IAttributes {
   x1: number;
   y1: number;
   x2: number;
   y2: number;
   stroke: string;
   "stroke-linecap": string;
-  [key: string]: string | number;
 }
 
 export interface IElements {
-  Line: () => {};
-  Paper: () => {};
+  Line: () => object;
+  Paper: () => object;
+}
+
+export interface ICompileOptions {
+  /** Limits executed statements and loop iterations, including empty loops. */
+  maxSteps?: number;
 }

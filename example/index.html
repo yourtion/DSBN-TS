@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DSBN — Drawings by numbers</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #18332f; background: #f5f4ef; }
+    body { max-width: 1000px; margin: 0 auto; padding: 48px 24px; }
+    h1 { font-size: clamp(2rem, 6vw, 3.8rem); letter-spacing: -.06em; margin: 0; }
+    .intro { max-width: 620px; line-height: 1.7; }
+    main { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 32px; }
+    article { background: white; padding: 24px; border-radius: 16px; border: 1px solid #dce3dc; }
+    img { width: 100%; aspect-ratio: 1; display: block; }
+    h2 { font-size: 1.15rem; }
+    p { line-height: 1.6; }
+    a { color: #0f766e; text-underline-offset: 4px; }
+    code { font-size: .9em; background: #e8ede7; padding: 3px 6px; border-radius: 4px; }
+    footer { margin-top: 32px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Drawings by numbers.</h1>
+    <p class="intro">A few lines of DBN become standalone SVG. These four drawings demonstrate loops, questions, arithmetic, point sampling, and vector shapes.</p>
+    <p>Rebuild with <code>npm run demo</code> · <a href="../README.md">Language reference</a></p>
+  </header>
+  <main>
+    <article>
+      <img src="fan.svg" alt="Black lines form a fan on a white canvas">
+      <h2>01 / Line fan</h2>
+      <p>A descending repeat loop creates a geometric curve from straight lines.</p>
+      <a href="fan.dbn">DBN source</a> · <a href="fan.svg" download>Download SVG</a>
+    </article>
+    <article>
+      <img src="grid.svg" alt="A five by five gray grid with white circles above the diagonal">
+      <h2>02 / Nested grid</h2>
+      <p>Nested loops position tiles; a question adds circles above the diagonal.</p>
+      <a href="grid.dbn">DBN source</a> · <a href="grid.svg" download>Download SVG</a>
+    </article>
+    <article>
+      <img src="shapes.svg" alt="Teal rectangle, circle and ellipse above a coral triangle, dark polyline and gold path">
+      <h2>03 / Vector palette</h2>
+      <p>Six SVG extensions share DBN coordinates and a small color palette.</p>
+      <a href="shapes.dbn">DBN source</a> · <a href="shapes.svg" download>Download SVG</a>
+    </article>
+    <article>
+      <img src="dots.svg" alt="A black diagonal crosses a gray diagonal made of individual dots">
+      <h2>04 / Sample and reflect</h2>
+      <p>Read a diagonal line's grayscale values and reflect them into a dotted line.</p>
+      <a href="dots.dbn">DBN source</a> · <a href="dots.svg" download>Download SVG</a>
+    </article>
+  </main>
+  <footer><a href="https://github.com/yourtion/DSBN-TS">DSBN-TS on GitHub</a> · MIT licensed · Works offline</footer>
+</body>
+</html>
