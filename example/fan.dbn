@@ -1,0 +1,6 @@
+// Classic DBN line drawing with a descending loop.
+Paper 0
+Pen 100
+Repeat n 9 1 {
+  Line 10 (n * 10) (100 - n * 10) 10
+}

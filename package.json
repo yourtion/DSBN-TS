@@ -1,37 +1,42 @@
 {
   "name": "dsbn",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Design SVG By Numbers ( Use DBN language for SVG implement by TypeScript )",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
   "files": [
-    "dist/lib"
+    "dist/lib",
+    "dist/cli.js",
+    "dist/cli.d.ts",
+    "dist/cli.js.map",
+    "example"
   ],
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "compile": "tsc",
-    "lint": "tslint ./src --fix",
-    "test": "npm run compile && export TS_NODE_PROJECT=test && mocha dist/test/*.js",
-    "test-watch": "npm run compile && export TS_NODE_PROJECT=test && mocha --watch",
-    "test-cov": "npm run compile && export TS_NODE_PROJECT=test && istanbul cover _mocha && npm run test-cov-remap",
-    "test-cov-remap": "remap-istanbul -i coverage/coverage.json  -t html -o coverage/html-report",
-    "prepublishOnly": "npm run lint && npm run test"
+    "clean": "node -e \"require('node:fs').rmSync('dist', {recursive:true, force:true})\"",
+    "compile": "npm run clean && tsc",
+    "lint": "eslint src scripts eslint.config.mjs",
+    "test": "npm run compile && mocha \"dist/test/**/*.js\"",
+    "test-watch": "npm run compile && mocha --watch \"dist/test/**/*.js\"",
+    "test-cov": "npm run compile && c8 --all --include=\"dist/lib/**/*.js\" --include=\"dist/cli.js\" --reporter=text --reporter=html --reporter=lcov mocha \"dist/test/**/*.js\"",
+    "demo": "npm run compile && node scripts/build-examples.cjs",
+    "check": "npm run lint && npm test && npm run demo",
+    "prepack": "npm run compile",
+    "prepublishOnly": "npm run check"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.10",
-    "chai": "^4.2.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^5.2.0",
-    "remap-istanbul": "^0.12.0",
-    "source-map-support": "^0.5.9",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "typescript": "^3.2.1"
+    "@eslint/js": "^10.0.1",
+    "@types/chai": "^4.3.20",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.19.0",
+    "c8": "^11.0.0",
+    "chai": "^4.5.0",
+    "eslint": "^10.13.0",
+    "mocha": "^12.0.3",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.0"
   },
   "repository": {
     "type": "git",
@@ -45,5 +50,18 @@
   "bugs": {
     "url": "https://github.com/yourtion/DSBN-TS/issues"
   },
-  "homepage": "https://github.com/yourtion/DSBN-TS#readme"
+  "homepage": "https://github.com/yourtion/DSBN-TS#readme",
+  "bin": {
+    "dsbn": "dist/cli.js"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "c8": {
+    "check-coverage": true,
+    "lines": 95,
+    "statements": 95,
+    "functions": 95,
+    "branches": 90
+  }
 }

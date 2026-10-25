@@ -1,0 +1,12 @@
+// SVG shapes use the same upward Y axis as Line.
+Paper "#f1f5f9"
+Pen "#0f766e"
+Rect 8 60 24 28
+Circle 52 74 14
+Ellipse 81 74 10 14
+Pen "#e76f51"
+Polygon [8 12] [32 12] [20 42]
+Pen "#334155"
+Polyline [38 12] [44 40] [52 18] [60 40] [66 12]
+Pen "#e9c46a"
+Path "M 72 12 L 72 40 Q 94 40 94 26 Q 94 12 72 12 Z"

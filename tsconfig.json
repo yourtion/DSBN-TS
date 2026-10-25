@@ -6,10 +6,16 @@
     "moduleResolution": "node",
     "declaration": true,
     "strict": true,
-    "target": "esnext",
+    "target": "ES2022",
     "esModuleInterop": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "allowUnusedLabels": false,
     "noUnusedLocals": true,
-  }
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
 }

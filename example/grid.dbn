@@ -1,0 +1,15 @@
+// Nested loops, variables, arithmetic, and questions.
+Paper 0
+Pen 85
+Repeat column 0 4 {
+  Repeat row 0 4 {
+    Set x (column * 20 + 3)
+    Set y (row * 20 + 3)
+    Rect x y 14 14
+    Smaller? column row {
+      Pen 0
+      Circle (x + 7) (y + 7) 4
+      Pen 85
+    }
+  }
+}
