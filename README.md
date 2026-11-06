@@ -4,7 +4,7 @@
 
 Design SVG By Numbers: a small, dependency-free TypeScript compiler for a
 DBN-inspired drawing language. Compile drawings to standalone SVG using the
-library or command line. Node.js 22.13 or later is required for development and CLI use.
+library or command line. Node.js 22.13 or later is required.
 
 - **Small programs, real vector graphics:** variables, arithmetic, nested loops, and conditions.
 - **Ready to use:** a TypeScript/JavaScript API and a CLI that exports standalone SVG files.
@@ -64,38 +64,45 @@ nine lines. Coordinates start at the **bottom left** of the 100 × 100 canvas.
 
 ## Quick start
 
-**Requirements:** Node.js 22.13+ and npm. Start from the repository to use all
-features documented here:
+**Requirements:** Node.js 22.13+ and npm. Install the published
+[`dsbn` package](https://www.npmjs.com/package/dsbn) in your project:
 
 ```sh
-git clone https://github.com/yourtion/DSBN-TS.git
-cd DSBN-TS
-npm ci
-npm run demo
-node dist/cli.js example/fan.dbn -o drawing.svg
+npm install dsbn
 ```
 
-Open `drawing.svg` in a browser to see your first exported drawing. For the
-complete offline gallery, open `example/index.html` from your local checkout;
-the [gallery source](example/index.html) is also in the repository.
-
-**Try your own drawing:** save the line-fan program above as `drawing.dbn`, edit
-the pen color or loop bounds, then run:
+Save the [line-fan program above](#examples) as `drawing.dbn`, then compile it
+with the locally installed CLI:
 
 ```sh
-node dist/cli.js drawing.dbn -o drawing.svg
+npx dsbn drawing.dbn -o drawing.svg
 ```
 
-Reopen `drawing.svg` to see the result. `npm run demo` rebuilds all four
-checked-in example SVGs from their `.dbn` sources, so the previews and examples
-stay in sync. For JavaScript/TypeScript integration, continue with [Library](#library).
+Open `drawing.svg` in a browser. Edit the pen color or loop bounds, rerun the
+command, and reopen the SVG to see the result.
+
+For a one-off run without adding a project dependency or installing globally,
+use the published version directly (npm may ask before downloading it):
+
+```sh
+npx dsbn@0.3.0 drawing.dbn -o drawing.svg
+```
+
+No repository checkout or build step is needed. For JavaScript/TypeScript
+integration, continue with [Library](#library). To rebuild the examples and
+open the offline gallery from source, see [Development](#development).
 
 ## Library
 
-After compiling the repository:
+After `npm install dsbn`, import from `dsbn`, not from the repository's `dist`
+directory. The package includes compiled JavaScript and TypeScript declarations.
+
+### CommonJS
+
+Save this as `drawing.cjs` and run `node drawing.cjs`:
 
 ```js
-const { DSBN } = require('./dist/lib');
+const { DSBN } = require('dsbn');
 const fs = require('node:fs');
 
 const compiler = new DSBN();
@@ -108,6 +115,35 @@ const svg = compiler.compile(`
 `, { maxSteps: 100000 });
 fs.writeFileSync('drawing.svg', svg);
 ```
+
+### ES modules
+
+Use the named export in a `.mjs` file (or a `.js` file in a project with
+`"type": "module"`). Save this as `drawing.mjs` and run `node drawing.mjs`:
+
+```js
+import { DSBN } from 'dsbn';
+import { writeFileSync } from 'node:fs';
+
+const svg = new DSBN().compile('Paper 0 Pen 100 Line 0 0 100 100');
+writeFileSync('drawing.svg', svg);
+```
+
+### TypeScript
+
+Type declarations are bundled; no separate `@types` package is needed. In your
+TypeScript project, use the same named import and optionally import the options
+interface as a type:
+
+```ts
+import { DSBN, type ICompileOptions } from 'dsbn';
+
+const options: ICompileOptions = { maxSteps: 100000 };
+const svg: string = new DSBN().compile('Paper 0 Pen 100 Line 0 0 100 100', options);
+console.log(svg);
+```
+
+Compile this with your project's TypeScript build before running the JavaScript.
 
 The package entry point exports `DSBN`, `Lexer`, `Parser`, `Transformer`,
 `Generator`, and their TypeScript interfaces. The individual stages remain
@@ -123,18 +159,22 @@ the limit. Blocks, expressions, and SVG trees have a nesting limit of 100.
 
 ## Command line
 
+After `npm install dsbn`, use `npx dsbn` from your project:
+
 ```sh
-node dist/cli.js drawing.dbn -o drawing.svg
-node dist/cli.js drawing.dbn > drawing.svg
-printf 'Paper 0 Pen 100 Line 0 0 100 100' | node dist/cli.js -
-node dist/cli.js drawing.dbn --max-steps 5000
-node dist/cli.js --help
-node dist/cli.js --version
+npx dsbn drawing.dbn -o drawing.svg
+npx dsbn drawing.dbn > drawing.svg
+printf 'Paper 0 Pen 100 Line 0 0 100 100' | npx dsbn -
+npx dsbn drawing.dbn --max-steps 5000
+npx dsbn --help
+npx dsbn --version
 ```
 
-The installed package also exposes the `dsbn` executable. Omit the input path or
-use `-` to read stdin. Omit `-o` / `--output` to write stdout. Errors go to stderr
-with exit status 1; compilation completes before an output file is opened.
+The package exposes the `dsbn` executable, which can also be used directly in
+npm scripts. For one-off use, replace `npx dsbn` with `npx dsbn@0.3.0`.
+Omit the input path or use `-` to read stdin. Omit `-o` / `--output` to write
+stdout. Errors go to stderr with exit status 1; compilation completes before an
+output file is opened.
 
 ## Language
 
@@ -246,6 +286,22 @@ Path also uses DBN's upward Y axis through an SVG transform. Strings use JSON
 double-quote and escape rules. Generated attribute values are XML escaped.
 
 ## Development
+
+To work on the compiler or rebuild the example gallery, start from a checkout:
+
+```sh
+git clone https://github.com/yourtion/DSBN-TS.git
+cd DSBN-TS
+npm ci
+npm run demo
+node dist/cli.js example/fan.dbn -o drawing.svg
+```
+
+Open `example/index.html` from your local checkout for the complete offline
+gallery; the [gallery source](example/index.html) is also in the repository.
+`npm run demo` compiles the project and rebuilds all four checked-in example SVGs
+from their `.dbn` sources. After compiling, use `node dist/cli.js` to test the
+checkout's CLI instead of the published package.
 
 ```sh
 npm test            # Compile and run all unit, integration, CLI, and demo tests
